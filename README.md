@@ -1,4 +1,4 @@
-# voucher-app-3
+# voucher-app-i
 
 ## Project setup
 ```

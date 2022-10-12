@@ -1,5 +1,3 @@
 <template>
-  <div class="projects">
-    <h1>This is the projects page</h1>
-  </div>
+  <h1>Projects Section</h1>
 </template>
