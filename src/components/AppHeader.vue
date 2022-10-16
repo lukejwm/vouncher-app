@@ -1,78 +1,40 @@
 <template>
-  <div class="t3-wrapper">
-    <header id="t3-header" class="container t3-header" role="banner">
-      <div class="row">
-        <!-- Logo section -->
-        <div class="col-xs-12 col-sm-6 col-md-6 logo">
-          <div class="logo-image">
-            <a href="/" title="Brasenose College, Oxford">
-              <img
-                class="logo-img"
-                src="../assets/images/brasenose-college.gif"
-                alt="Brasenose College, Oxford"
-              />
-              <span>Brasenose College, Oxford</span>
-            </a>
-            <small class="site-slogan"></small>
-          </div>
-        </div>
-        <div class="col-xs-12 col-sm-6 col-md-1"></div>
-        <!-- Search bar section -->
-        <div class="col-xs-12 col-sm-6 col-md-5">
-          <div class="search" role="search">
-            <div class="marquee">
-              <div class="mod-search">
-                <!-- TODO: Either get rid of the search bar or reconfigure/fix it! -->
-                <form action="/" method="post" class="form-inline form-search">
-                  <label for="mod-search-searchword" class="element-invisible"
-                    >Search this site</label
-                  >
-                  <input
-                    name="searchword"
-                    id="mod-search-searchword"
-                    maxlength="200"
-                    class="form-control"
-                    type="text"
-                    size="20"
-                    placeholder="Search ..."
-                  />
-                  <button
-                    class="button btn btn-primary"
-                    onclick="if (!window.__cfRLUnblockHandlers) return false; this.form.searchword.focus();"
-                  />
-                </form>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </header>
-    <nav id="t3-mainnav" class="wrap navbar navbar-default t3-mainnav">
-      <div class="container">
-        <div class="t3-navbar" role="navigation">
-          <ul class="extnav_horizontal">
-            <li class="item-401">
-              <router-link to="/">Home</router-link>
-            </li>
-            <li class="item-338">
-              <router-link to="/projects">Projects</router-link>
-            </li>
-            <li class="item-286">
-              <router-link to="/about">About</router-link>
-            </li>
-          </ul>
-        </div>
-      </div>
-    </nav>
-  </div>
+  <CHeader position="sticky" class="mb-4">
+    <CContainer fluid>
+      <CHeaderToggler class="ps-1" @click="$store.commit('toggleSidebar')">
+        <CIcon icon="cil-menu" size="lg" />
+      </CHeaderToggler>
+      <CHeaderBrand class="mx-auto d-lg-none">
+        <CIcon :icon="logo" height="48" alt="Logo" />
+      </CHeaderBrand>
+      <CHeaderNav class="d-none d-md-flex me-auto">
+        <CNavItem>
+          <CNavLink href="/dashboard"> Home </CNavLink>
+        </CNavItem>
+        <CNavItem>
+          <CNavLink href="#">About</CNavLink>
+        </CNavItem>
+      </CHeaderNav>
+    </CContainer>
+    <CHeaderDivider />
+    <CContainer fluid>
+      <AppBreadcrumb />
+    </CContainer>
+  </CHeader>
 </template>
 
-<script lang="ts">
+<script>
+import AppBreadcrumb from './AppBreadcrumb'
+import { logo } from '@/assets/brand/logo'
 export default {
-  name: "AppHeader",
-};
+  name: 'AppHeader',
+  components: {
+    AppBreadcrumb,
+  },
+  setup() {
+    return {
+      logo,
+    }
+  },
+}
 </script>
-
-<style>
-@import "../assets/css/style.css";
-</style>
